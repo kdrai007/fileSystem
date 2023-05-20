@@ -1,5 +1,32 @@
-main {
-  text-align: center;
-  vertical-align: center;
-  line-height: 100vh
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+p{
+  cursor:pointer;
+}
+main{
+  display:flex;
+  flex-direction:column;
+}
+.folder{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  /* width:80%; */
+  /* background-color:gray; */
+  border-radius:1rem;
+  padding:0.5rem;
+}
+.folder >div{
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+.folder >div >button{
+  /* border:none; */
+  border:0.1px solid black;
+  background:inherit;
+  padding: 1px 5px;
 }
