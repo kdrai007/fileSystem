@@ -9,15 +9,20 @@ p{
 main{
   display:flex;
   flex-direction:column;
+  padding:1rem;
+  color:white;
 }
 .folder{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  /* width:80%; */
-  /* background-color:gray; */
-  border-radius:1rem;
+  width:20rem;
+  background-color:#9e9e9eff;
+  /* border-radius:1rem; */
   padding:0.5rem;
+}
+.insideFolder{
+  /* margin-bottom:1rem; */
 }
 .folder >div{
   display:flex;
@@ -26,7 +31,7 @@ main{
 }
 .folder >div >button{
   /* border:none; */
-  border:0.1px solid black;
+  border:0.1px solid white;
   background:inherit;
   padding: 1px 5px;
 }

@@ -1,5 +1,5 @@
 import Uuid4 from "./uuidGenerator";
-const  explorer=[
+const  explorer=
   {
     id:Uuid4(),
     isFolder:true,
@@ -31,5 +31,5 @@ const  explorer=[
       }
     ]
   }
-];
+;
 export default explorer;

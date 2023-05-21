@@ -1,6 +1,14 @@
 import {useState} from "react";
-const Folder=(props)=>{
+import useInsertFolder from "../hooks/useNewFolder";
+
+const Folder=({mainData,setExplorerData,expData})=>{
   const [expand,setExpand]=useState(false);
+  const {insertFolder}=useInsertFolder();
+  function NewFolder(folderId,item,isFolder){
+    const finalItem=insertFolder(mainData,folderId,item,isFolder);
+    console.log(folderId,item,isFolder);
+    setExplorerData(mainData);
+  }
   const [showInput, setShowInput]=useState({visible:false,isFolder:null});
   const handleClick=(e,folder)=>{
     setExpand(true);
@@ -11,24 +19,23 @@ const Folder=(props)=>{
   }
   const addNewFolder=(e)=>{
     if(e.keyCode===13 && e.target.value){
-      console.log(props.expData.id,e.target.value,showInput.isFolder);
-      props.NewFolder(props.expData.id,e.target.value,showInput.isFolder);
+      NewFolder(expData.id,e.target.value,showInput.isFolder);
       setShowInput({...showInput,visible:false});
     };
   }
- if(props.expData.isFolder) {
+ if(expData.isFolder) {
   return ( 
     <div>
         <div className="folder">
          <p className="folder_name" role="button" onClick={()=>setExpand(!expand)}>     
-           {expand?"📂":"📁"} {props.expData.name}</p>
+           {expand?"📂":"📁"} {expData.name}</p>
           <div>
             <button onClick={(e)=>handleClick(e,true)}>folder +</button>
             <button onClick={(e)=>handleClick(e,false)}>file +</button>
           </div>
        </div>
       <div className="insideFolder" 
-        style={{display:expand?"block":"none",paddingLeft:25}}>
+        style={{display:expand?"block":"none",paddingLeft:25,marginBottom:10}}>
         {showInput.visible && 
           <div className="input">
             {showInput.isFolder===true?"📁":"📄"} 
@@ -36,15 +43,15 @@ const Folder=(props)=>{
           </div>
         }
         {
-          props.expData.items.map((exp)=>{
-            return  <Folder expData={exp} key={exp.id} />
+          expData.items.map((exp)=>{
+            return  <Folder mainData={mainData} setExplorerData={setExplorerData} expData={exp} key={exp.id} />
           })
         }
       </div>
     </div>
       )
  }else{
-   return <div className="file">📄 {props.expData.name}</div>
+   return <div className="file">📄 {expData.name}</div>
  }
 }
 export default Folder;
